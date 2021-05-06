@@ -1,6 +1,8 @@
 package com.crud.tasks.controller;
 
 import com.crud.tasks.domain.TaskDto;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -20,10 +22,15 @@ public class TaskController {
         return new TaskDto(1L, "test title", "test_content");
     }
 
-    @DeleteMapping(value = "deleteTask")
-    public void deleteTask(Long taskId) {
-        if (taskDtoList.size() < taskId) taskDtoList.remove(taskId);
+    @DeleteMapping(value = "deleteTask/{taskId}")
+    public ResponseEntity<Long> deleteTask(@PathVariable Long taskId) {
+        var isRemoved = taskDtoList.remove(taskId);
+        if (!isRemoved) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(taskId, HttpStatus.OK);
     }
+
 
     @GetMapping(value = "updateTask")
     public TaskDto updateTask(TaskDto taskDto) {
