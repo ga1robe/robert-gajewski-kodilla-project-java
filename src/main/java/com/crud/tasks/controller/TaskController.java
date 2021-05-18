@@ -20,11 +20,15 @@ public class TaskController {
 //    private TaskDto taskDto;
     private final List<TaskDto> taskDtoList = new ArrayList<>();
 
+//    @RequestMapping(method = RequestMethod.GET, value = "getTask/{taskId}")
+//    public TaskDto getTask(@PathVariable String taskId) throws TaskNotFoundException {
+//        return taskMapper.mapToTaskDto( dbService.getTask(Long.valueOf(taskId)).orElseThrow(TaskNotFoundException::new));
+//    }
 
-    @RequestMapping(method = RequestMethod.GET, value = "getTask/{taskId}")
-    public TaskDto getTask(@PathVariable String taskId) throws TaskNotFoundException {
+    @RequestMapping(method = RequestMethod.GET, value = "getTask")
+    public TaskDto getTask(@RequestParam Long taskId) throws TaskNotFoundException {
         return taskMapper.mapToTaskDto(
-                dbService.getTask(Long.valueOf(taskId)).orElseThrow(TaskNotFoundException::new)
+                dbService.getTask(taskId).orElseThrow(TaskNotFoundException::new)
         );
     }
 
