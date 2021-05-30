@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     // var apiRoot = 'http://localhost:8080/v1/task/';
-    var apiRoot = 'http://damp-bayou-80913.herokuapp.com/v1/task/';
+    var apiRoot = 'https://damp-bayou-80913.herokuapp.com/v1/task/';
     var datatableRowTemplate = $('[data-datatable-row-template]').children()[0];
     var tasksContainer = $('[data-tasks-container]');
 
