@@ -49,7 +49,7 @@ public class TaskController {
             return (List<TaskDto>) new TaskNotFoundException();
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "deleteTask/{taskId}")
+    @RequestMapping(method = RequestMethod.DELETE, value = "deleteTask/taskId={taskId}")
     public void deleteTask(@PathVariable Long taskId) {
         dbService.deleteTaskById(taskId);
     }
